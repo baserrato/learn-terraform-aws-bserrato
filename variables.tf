@@ -1,11 +1,17 @@
-variable "sandbox_developer" {
+variable "aws_access_key" {
   sensitive = true
   type      = string
-  default   = "774051255656"
+  default   = ""
 }
 
-variable "role_credentials" {
+variable "aws_secret_key" {
   sensitive = true
   type      = string
-  default   = "arn:aws:iam::774051255656:role/Developer"
+  default   = ""
+}
+
+variable "sandbox_arn_role" {
+  sensitive = true
+  type      = string
+  default   = ""
 }

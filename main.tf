@@ -17,9 +17,11 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region     = "us-east-1"
+  access_key = var.aws_access_key
+  secret_key = var.aws_secret_key
   assume_role {
-    role_arn = var.role_credentials
+    role_arn = var.sandbox_arn_role
   }
 }
 
@@ -31,7 +33,7 @@ resource "aws_instance" "bserrato_app_server" {
     Name        = "bserrato-dob-terraform"
     Client      = "Internal"
     Project     = "DOB"
-    Environment = "Demo Testing"
+    Environment = "Demo"
     Application = "Terraform EC2 Instance building"
     Owner       = "Benjamin Serrato"
   }
