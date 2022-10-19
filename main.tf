@@ -40,7 +40,7 @@ resource "aws_instance" "bserrato_app_server" {
     Name        = "bserrato-dob-terraform"
     Client      = "Internal"
     Project     = "DOB"
-    Environment = "Demo"
+    Environment = "Demo Testing"
     Application = "Terraform EC2 Instance building"
     Owner       = "Benjamin Serrato"
   }
