@@ -1,10 +1,17 @@
 terraform {
-  cloud {
-    organization = "ferrets"
+  #  cloud {
+  #    organization = "ferrets"
+  #
+  #    workspaces {
+  #      name = "bserrato-aws-terraform"
+  #    }
+  #  }
 
-    workspaces {
-      name = "bserrato-aws-terraform"
-    }
+  backend "s3" {
+    profile = "sandbox-dev"
+    bucket  = "bserrato-dob-terraform"
+    key     = "terra-savestate/terraform.tfstate"
+    region  = "us-east-1"
   }
   required_providers {
     aws = {

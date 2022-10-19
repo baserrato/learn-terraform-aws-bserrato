@@ -1,0 +1,6 @@
+# ignore terraform variable definition files
+*.auto.tfvars
+*.auto.tfvars.json
+
+# Ignores terraform setup directory
+.terraform/
