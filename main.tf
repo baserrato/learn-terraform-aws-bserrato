@@ -7,11 +7,11 @@ terraform {
   #    }
   #  }
 
-  backend "s3" {
-    profile = "sandbox-dev"
-    bucket  = "bserrato-dob-terraform"
+     backend "s3" {
+       profile = "sandbox-dev"
+         bucket  = "bserrato-dob-terraform"
     key     = "terra-savestate/terraform.tfstate"
-    region  = "us-east-1"
+        region  = "us-east-1"
   }
   required_providers {
     aws = {
