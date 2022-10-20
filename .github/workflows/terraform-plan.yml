@@ -13,7 +13,11 @@ jobs:
         run: terraform fmt
       - name: Terraform Initialize
         id: init
-        run: terraform init -backend-config="access_key=${{ secrets.AWS_ACCESS_KEY }}" -backend-config="secret_key=${{ secrets.AWS_SECRET_KEY }}" -backend-config="role_arn=${{ secrets.AWS_ARN_ROLE }}"
-#      - name: Terraform Validation
-
+        run: terraform init \
+          -backend-config="access_key=${{ secrets.AWS_ACCESS_KEY }}" \
+          -backend-config="secret_key=${{ secrets.AWS_SECRET_KEY }}" \
+          -backend-config="role_arn=${{ secrets.AWS_ARN_ROLE }}"
+      - name: Terraform Validation
+        id: validate
+        run: terraform validate
 #      - name: Terraform Plan
