@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [ "master" ]
 jobs:
-  build:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -13,7 +13,8 @@ jobs:
         run: terraform fmt
       - name: Terraform Initialize
         id: init
-        run: terraform init
+        run: terraform init \
+             - backend-config="access_key=${ secrets.AWS_ACCESS_KEY }"
 #      - name: Terraform Validation
 
 #      - name: Terraform Plan
