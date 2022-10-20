@@ -9,10 +9,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Terraform Format
-        id: init
+        id: fmt
         run: terraform fmt
-#      - name: Terraform Initialize
-
+      - name: Terraform Initialize
+        id: init
+        run: terraform init
 #      - name: Terraform Validation
 
 #      - name: Terraform Plan
