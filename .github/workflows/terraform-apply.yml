@@ -1,10 +1,10 @@
-name: Terraform Setup Validation
+name: Terraform Apply
 
 on:
-  pull_request:
+  push:
     branches: [ "master" ]
 jobs:
-  validate:
+  apply:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -20,14 +20,10 @@ jobs:
           -backend-config="secret_key=${{ secrets.AWS_SECRET_KEY }}" \
           -backend-config="role_arn=${{ secrets.AWS_ARN_ROLE }}"
       
-      - name: Terraform Validation
-        id: validate
-        run: terraform validate
-
-      - name: Terraform Plan
-        id: plan
+      - name: Terraform Apply
+        id: apply
         run: |
-          terraform plan \
+          terraform apply \
           -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY }}" \
           -var="aws_secret_key=${{ secrets.AWS_SECRET_KEY }}" \
           -var="sandbox_arn_role=${{ secrets.AWS_ARN_ROLE }}"

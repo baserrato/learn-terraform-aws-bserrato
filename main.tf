@@ -7,11 +7,11 @@ terraform {
   #    }
   #  }
 
-  backend "s3" {
-    profile = "sandbox-dev"
-    bucket  = "bserrato-dob-terraform"
+     backend "s3" {
+       profile = "sandbox-dev"
+         bucket  = "bserrato-dob-terraform"
     key     = "terra-savestate/terraform.tfstate"
-    region  = "us-east-1"
+        region  = "us-east-1"
   }
   required_providers {
     aws = {
@@ -40,7 +40,7 @@ resource "aws_instance" "bserrato_app_server" {
     Name        = "bserrato-dob-terraform"
     Client      = "Internal"
     Project     = "DOB"
-    Environment = "Demo"
+    Environment = "Demo Testing"
     Application = "Terraform EC2 Instance building"
     Owner       = "Benjamin Serrato"
   }
