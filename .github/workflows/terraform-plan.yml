@@ -30,7 +30,9 @@ jobs:
           terraform plan \
           -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY }}" \
           -var="aws_secret_key=${{ secrets.AWS_SECRET_KEY }}" \
-          -var="sandbox_arn_role=${{ secrets.AWS_ARN_ROLE }}"
+          -var="sandbox_arn_role=${{ secrets.AWS_ARN_ROLE }}" \
+          -out plan.out
+          terragrunt show -no-color plan.out > plan.txt
 
       - name: PR Comment
         uses: actions/github-script@v3
@@ -40,7 +42,7 @@ jobs:
             const output = `
             #### Terragrunt Plan \`${{ steps.plan.outcome }}\`
             <details><summary>Show Plan</summary>
-            \`\`\`${{ steps.plan.outcome }}\`\`\`
+            \`\`\`${fs.readFileSync('./plan.txt')}\`\`\`
             </details>`;
             github.issues.createComment({
               issue_number: context.issue.number,
