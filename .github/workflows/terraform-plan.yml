@@ -31,3 +31,20 @@ jobs:
           -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY }}" \
           -var="aws_secret_key=${{ secrets.AWS_SECRET_KEY }}" \
           -var="sandbox_arn_role=${{ secrets.AWS_ARN_ROLE }}"
+
+      - name: PR Comment
+        uses: actions/github-script@v3
+        with:
+          script: |
+            const fs = require('fs');
+            const output = `
+            #### Terragrunt Plan \`${{ steps.terragrunt_plan.outcome }}\`
+            <details><summary>Show Plan</summary>
+            \`\`\`${fs.readFileSync('${{inputs.WORKING_DIR}}/plan.txt')}\`\`\`
+            </details>`;
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
