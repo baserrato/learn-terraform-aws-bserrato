@@ -38,9 +38,9 @@ jobs:
           script: |
             const fs = require('fs');
             const output = `
-            #### Terragrunt Plan \`${{ steps.terragrunt_plan.outcome }}\`
+            #### Terragrunt Plan \`${{ steps.plan.outcome }}\`
             <details><summary>Show Plan</summary>
-            \`\`\`${fs.readFileSync('${{inputs.WORKING_DIR}}/plan.txt')}\`\`\`
+            \`\`\`${fs.readFileSync('./plan.txt')\`\`\`
             </details>`;
             github.issues.createComment({
               issue_number: context.issue.number,
