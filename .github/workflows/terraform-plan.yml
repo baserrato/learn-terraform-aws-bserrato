@@ -32,7 +32,7 @@ jobs:
           -var="aws_secret_key=${{ secrets.AWS_SECRET_KEY }}" \
           -var="sandbox_arn_role=${{ secrets.AWS_ARN_ROLE }}" \
           -out plan.out
-          terragrunt show -no-color plan.out > plan.txt
+          terraform show -no-color plan.out > plan.txt
 
       - name: PR Comment
         uses: actions/github-script@v3
